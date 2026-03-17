@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #050a14;
+    --color-bg-deep: #02050d;
+    --color-surface: rgba(10, 18, 34, 0.78);
+    --color-surface-strong: rgba(13, 22, 42, 0.95);
+    --color-surface-soft: rgba(17, 28, 52, 0.72);
+    --color-border: rgba(156, 175, 208, 0.16);
+    --color-border-strong: rgba(156, 175, 208, 0.24);
+    --color-ink: #f4f7ff;
+    --color-ink-soft: #d7e2f6;
+    --color-muted: #7686a8;
+    --color-muted-strong: #aab9d4;
+    --color-accent: #f08c56;
+    --color-accent-strong: #ffb180;
+    --color-positive: #28d39b;
+    --color-negative: #ff667d;
+    --color-highlight: #7dd7ff;
+    --shadow-panel:
+      0 36px 90px -44px rgba(0, 0, 0, 0.82),
+      0 12px 32px -20px rgba(0, 0, 0, 0.52),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Manrope', sans-serif;
+    color: var(--color-ink);
+    background:
+      radial-gradient(circle at top, rgba(125, 215, 255, 0.11), transparent 26%),
+      radial-gradient(circle at 8% 12%, rgba(240, 140, 86, 0.14), transparent 24%),
+      radial-gradient(circle at 88% 10%, rgba(45, 114, 255, 0.14), transparent 22%),
+      linear-gradient(180deg, #07111f 0%, #050a14 45%, #02050d 100%);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.88);
+    opacity: 0.76;
+  }
+
+  ::selection {
+    background: rgba(240, 140, 86, 0.24);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .page-shell {
+    min-height: 100svh;
+    isolation: isolate;
+    background:
+      linear-gradient(180deg, rgba(7, 12, 24, 0.82) 0%, rgba(3, 7, 15, 0.9) 100%);
+  }
+
+  .ambient-spotlight {
+    background:
+      radial-gradient(circle, rgba(125, 215, 255, 0.14) 0%, rgba(125, 215, 255, 0.04) 32%, transparent 72%);
+    filter: blur(18px);
+    opacity: 0.8;
+    will-change: transform;
+  }
+
+  .dashboard-grid {
+    background-image:
+      linear-gradient(rgba(131, 145, 176, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(131, 145, 176, 0.07) 1px, transparent 1px);
+    background-position: center center;
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at center, black 44%, transparent 88%);
+  }
+
+  .panel-elevated {
+    @apply rounded-[32px] border backdrop-blur-2xl;
+    border-color: var(--color-border);
+    background:
+      linear-gradient(180deg, rgba(11, 19, 36, 0.9) 0%, rgba(8, 14, 28, 0.78) 100%);
+    box-shadow: var(--shadow-panel);
+  }
+
+  .field-label {
+    @apply mb-2 block text-[11px] font-semibold uppercase tracking-[0.28em];
+    color: var(--color-muted);
+  }
+
+  .field-input {
+    @apply w-full rounded-[22px] border px-4 py-3.5 text-sm outline-none transition duration-300;
+    border-color: rgba(156, 175, 208, 0.14);
+    background: rgba(12, 22, 42, 0.86);
+    color: var(--color-ink);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .field-input::placeholder {
+    color: rgba(118, 134, 168, 0.82);
+  }
+
+  .field-input:focus {
+    border-color: rgba(240, 140, 86, 0.42);
+    box-shadow:
+      0 0 0 4px rgba(240, 140, 86, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-[22px] px-5 py-3.5 font-semibold text-white transition duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60;
+    background: linear-gradient(135deg, #ff9b5f 0%, #f08c56 42%, #db6a48 100%);
+    box-shadow:
+      0 22px 42px -22px rgba(240, 140, 86, 0.62),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .primary-button:hover {
+    box-shadow:
+      0 28px 48px -24px rgba(240, 140, 86, 0.78),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-[22px] border px-5 py-3.5 font-semibold transition duration-300 hover:-translate-y-0.5;
+    border-color: rgba(156, 175, 208, 0.18);
+    background: rgba(12, 21, 40, 0.72);
+    color: var(--color-ink);
+  }
+
+  .secondary-button:hover {
+    border-color: rgba(125, 215, 255, 0.26);
+    background: rgba(17, 28, 52, 0.88);
+  }
+
+  .ghost-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-[20px] border px-4 py-2.5 font-medium transition duration-300;
+    border-color: rgba(156, 175, 208, 0.14);
+    background: rgba(8, 14, 28, 0.4);
+    color: var(--color-ink-soft);
+  }
+
+  .ghost-button:hover {
+    border-color: rgba(156, 175, 208, 0.28);
+    background: rgba(13, 22, 42, 0.76);
+    color: var(--color-ink);
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    @apply text-3xl font-semibold tracking-tight md:text-5xl;
+    color: var(--color-ink);
+  }
+
+  .eyebrow {
+    @apply inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em];
+    border-color: rgba(240, 140, 86, 0.2);
+    background: rgba(240, 140, 86, 0.08);
+    color: var(--color-accent-strong);
+  }
+
+  .status-chip {
+    @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold;
+  }
+
+  .floating-card {
+    animation: floating-card 11s ease-in-out infinite;
+  }
+
+  .pulse-line {
+    animation: pulse-line 2.8s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+#root {
+  min-height: 100svh;
+}
+
+@media (max-width: 640px) {
+  .dashboard-grid {
+    background-size: 48px 48px;
+    mask-image: linear-gradient(180deg, black 0%, transparent 100%);
+  }
+
+  .panel-elevated {
+    border-radius: 26px;
+  }
+}
+
+@keyframes floating-card {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-line {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(4, 8, 18, 0.95);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(240, 140, 86, 0.7), rgba(125, 215, 255, 0.52));
+  border-radius: 999px;
+}
