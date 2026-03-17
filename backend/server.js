@@ -182,6 +182,14 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 // 2. ROUTES (The API Endpoints)
 // ==========================================
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        status: 'success',
+        message: 'DeltaDCA API is online.',
+        health_check: '/api/health'
+    });
+});
+
 app.get('/api/health', (req, res) => {
     res.status(200).json({
         status: 'success',
@@ -639,7 +647,6 @@ if (require.main === module) {
     });
 }
 
-module.exports = {
-    app,
-    startServer
-};
+module.exports = app;
+module.exports.app = app;
+module.exports.startServer = startServer;
